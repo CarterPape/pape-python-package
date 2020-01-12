@@ -1,4 +1,10 @@
-# This program is free software. See file LICENSE for details.
+# # # # # # # # # # # # # # # # # # # #
+# Pape (a Python package)
+# Copyright 2020 Carter Pape
+# 
+# See file LICENSE for licensing terms.
+# # # # # # # # # # # # # # # # # # # #
+
 
 import setuptools
 
@@ -7,7 +13,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pape",
-    version="0.0.2",
+    version="0.0.3",
     author="Carter Pape",
     author_email="pape-python-package@carterpape.com",
     description="A package for personalized Python add-ons",
