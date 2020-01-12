@@ -1,5 +1,4 @@
 from math import floor
-import sys
 
 _typical_prefix_map = {
     0   :   "th",
