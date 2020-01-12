@@ -1,3 +1,5 @@
+# This program is free software. See file LICENSE for details.
+
 from math import floor
 
 _typical_prefix_map = {

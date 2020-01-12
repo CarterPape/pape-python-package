@@ -1,3 +1,5 @@
+# This program is free software. See file LICENSE for details.
+
 import setuptools
 
 with open("README.md", "r") as fh:
