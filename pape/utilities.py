@@ -5,7 +5,9 @@
 # See file LICENSE for licensing terms.
 # # # # # # # # # # # # # # # # # # # #
 
-from math import floor
+import math
+import typing
+import os.path
 
 _typical_prefix_map = {
     0: "th",
@@ -43,7 +45,7 @@ def ordinal(number: int) -> str:
         return f"{number}{_typical_prefix_map[abs(number) % 10]}"
 
 def _is_teenthish(number: int) -> bool:
-    return (floor(number / 10) % 10) == 1
+    return (math.floor(number / 10) % 10) == 1
 
 def pluralize(*,
     singular_form: str,
@@ -60,3 +62,10 @@ def pluralize(*,
         count = _ap_number_replacements_map[count]
     
     return f"{count} {correct_form}"
+
+def strip_file_extension(*,
+    from_path: typing.AnyStr,
+    basename_only: bool = False,
+) -> typing.AnyStr:
+    path = os.path.basename(from_path) if basename_only else from_path
+    return os.path.splitext(path)[0]

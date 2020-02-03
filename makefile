@@ -22,3 +22,6 @@ sdist:
 
 distribute:
 	twine upload dist/*
+
+debug_install:
+	pip install -e .
