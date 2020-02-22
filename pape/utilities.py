@@ -51,7 +51,8 @@ def pluralize(*,
     singular_form: str,
     count,
     plural_form = None,
-    use_AP_style = True
+    use_AP_style = True,
+    include_count = True,
 ) -> str:
     if plural_form == None:
         plural_form = f"{singular_form}s"
@@ -61,7 +62,11 @@ def pluralize(*,
     if use_AP_style and count in _ap_number_replacements_map:
         count = _ap_number_replacements_map[count]
     
-    return f"{count} {correct_form}"
+    return (
+        f"{count} {correct_form}"
+        if include_count
+        else f"{correct_form}"
+    )
 
 def strip_file_extension(*,
     from_path: typing.AnyStr,
