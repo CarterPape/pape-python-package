@@ -74,3 +74,29 @@ def strip_file_extension(*,
 ) -> typing.AnyStr:
     path = os.path.basename(from_path) if basename_only else from_path
     return os.path.splitext(path)[0]
+
+def full_class_name(*, of_object: object):
+    # from: https://stackoverflow.com/a/2020083/599097
+    
+    _object = of_object
+    module = _object.__class__.__module__
+    if (
+        module is None
+    ) or (
+        module == str.__class__.__module__ # i.e. module == "__builtin__"
+    ):
+        return _object.__class__.__name__
+    else:
+        return f"{module}.{_object.__class__.__name__}"
+
+def full_name(*, of_type: type):
+    _type = of_type
+    module = _type.__module__
+    if (
+        module is None
+    ) or (
+        module == str.__module__ # i.e. module == "__builtin__"
+    ):
+        return _type.__name__
+    else:
+        return f"{module}.{_type.__name__}"

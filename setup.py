@@ -13,7 +13,7 @@ with open("README.md", "r") as readme_file:
 
 setuptools.setup(
     name            = "pape",
-    version         = "0.0.6",
+    version         = "0.0.7",
     description     = "A package for personalized Python add-ons, created by Carter Pape",
     
     long_description                = long_description,
