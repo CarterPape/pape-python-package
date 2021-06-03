@@ -47,7 +47,9 @@ def ordinal(number: int) -> str:
 
 def ap_style_date_string(date: datetime.date, *,
     relative_to: datetime.date = None,
+    use_period: bool = True
 ):
+    period_maybe = "." if use_period else ""
     spelled_out_months = {3, 4, 5, 6, 7}
     
     date_string_format = (
