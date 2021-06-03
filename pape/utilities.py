@@ -5,6 +5,7 @@
 # See file LICENSE for licensing terms.
 # # # # # # # # # # # # # # # # # # # #
 
+import datetime
 import math
 import typing
 import os.path
@@ -43,6 +44,30 @@ def ordinal(number: int) -> str:
         return f"{number}th"
     else:
         return f"{number}{_typical_prefix_map[abs(number) % 10]}"
+
+def ap_style_date_string(date: datetime.date, *,
+    relative_to: datetime.date = None,
+):
+    spelled_out_months = {3, 4, 5, 6, 7}
+    
+    date_string_format = (
+        "%B %e" if date.month in spelled_out_months
+        else "%b. %e"
+    )
+    
+    if relative_to == None:
+        relative_to = datetime.date.today()
+    
+    if (
+        relative_to != False
+    ) and (
+        relative_to.year == date.year
+    ):
+        pass
+    else:
+        date_string_format += f", %Y"
+    
+    return date.strftime(date_string_format)
 
 def _is_teenthish(number: int) -> bool:
     return (math.floor(number / 10) % 10) == 1
