@@ -51,8 +51,8 @@ def ap_style_date_string(date: datetime.date, *,
     spelled_out_months = {3, 4, 5, 6, 7}
     
     date_string_format = (
-        "%B %e" if date.month in spelled_out_months
-        else "%b. %e"
+        "%B %-e" if date.month in spelled_out_months
+        else f"%b{period_maybe} %-e"
     )
     
     if relative_to == None:
