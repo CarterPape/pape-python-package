@@ -90,7 +90,7 @@ def pluralize(*,
         count = _ap_number_replacements_map[count]
     
     return (
-        f"{count} {correct_form}"
+        f"{count:,} {correct_form}"
         if include_count
         else f"{correct_form}"
     )
