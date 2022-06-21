@@ -21,7 +21,7 @@ sdist:
 	python setup.py sdist
 
 distribute:
-	twine upload dist/*
+	python -m twine upload dist/*
 
 debug_install:
 	pip install -e .
