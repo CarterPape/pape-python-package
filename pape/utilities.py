@@ -67,7 +67,7 @@ def ap_style_date_string(date: datetime.date, *,
     ):
         pass
     else:
-        date_string_format += f", %Y"
+        date_string_format += ", %Y"
     
     return date.strftime(date_string_format)
 
@@ -88,9 +88,11 @@ def pluralize(*,
     
     if use_AP_style and count in _ap_number_replacements_map:
         count = _ap_number_replacements_map[count]
+    else:
+        count = f"{count:,}"
     
     return (
-        f"{count:,} {correct_form}"
+        f"{count} {correct_form}"
         if include_count
         else f"{correct_form}"
     )
