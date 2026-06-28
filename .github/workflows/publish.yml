@@ -14,6 +14,6 @@ jobs:
         environment: pypi # must match the PyPI publisher's Environment
         steps:
             - uses: actions/checkout@v7
-            - uses: astral-sh/setup-uv@v8
+            - uses: astral-sh/setup-uv@v7
             - run: uv build
             - run: uv publish --trusted-publishing always
