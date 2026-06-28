@@ -1,6 +1,6 @@
 [project]
 name = "pape"
-version = "0.1.0"
+version = "0.1.1"
 description = "A package for personalized Python add-ons, created by Carter Pape"
 readme = "README.md"
 requires-python = ">=3.9"
