@@ -95,7 +95,7 @@ def ap_style_date_string(
         if date.month in spelled_out_months
         else f"%b{period_maybe} %-e"
         if date.month != september
-        else f"%Sept{period_maybe} %-e"
+        else f"Sept{period_maybe} %-e"
     )
 
     if relative_to is None:
