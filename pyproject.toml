@@ -3,11 +3,11 @@ name = "pape"
 version = "0.1.1"
 description = "A package for personalized Python add-ons, created by Carter Pape"
 readme = "README.md"
-requires-python = ">=3.9"
-license = { file = "LICENSE" }
+requires-python = ">=3.13"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
 classifiers = [
     "Programming Language :: Python",
-    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Operating System :: OS Independent",
     "Natural Language :: English",
 ]
@@ -22,26 +22,70 @@ email = "author@newsbot.carterpape.com"
 "Bug Tracker" = "https://github.com/CarterPape/pape-python-package/issues"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.11.2,<0.12.0"]
+build-backend = "uv_build"
 
-[tool.uv]
-package = true
+[dependency-groups]
+dev = ["pyright>=1.1.408", "pytest>=8.0", "pytest-cov>=6.0", "ruff>=0.15.7"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--cov=pape",
+    "--cov-report=term-missing",
+    "--cov-report=json",
+]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+omit = ["tests/*"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "^\\s*\\.\\.\\.",  # Protocol/abstract stub bodies
+    "if (typing\\.)?TYPE_CHECKING:",  # Type-checking-only blocks never run at runtime
+]
+
+[tool.ruff]
+line-length = 100
 
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
     "D212", # multi-line-summary-first-line - Conflicts with preferred rule D213 (multi-line-summary-second-line) - Ignoring D212 ensures we DO put the summary line of multi-line docstrings on the line after the tripe quotations, treating the triple quotations as a Markdown-like fence
     "D203", # incorrect-blank-line-before-class - Conflicts with preferred rule D211 (blank-line-before-class) - Ignoring D203 ensures we DO add a blank line between a class and its docstring, creating more breathing room in the source file
+    "COM812", # missing-trailing-comma - Conflicts with ruff's formatter; ruff itself warns to disable this rule when both the linter and formatter are enabled
+    "E501", # line-too-long - The formatter reflows code to line-length; long strings/comments it can't break shouldn't fail lint
+    "ICN001", # unconventional-import-alias - Full names of imports are always preferable to aliases
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"test/*" = [
+"tests/*" = [
     "SLF001", # protected-access: Tests should be allowed to modify the protected methods and variables of the instances and classes they are testing
     "S101",   # assert: Tests rely on assertions
+    "D103",   # missing-docstring-in-public-function: Test names are self-documenting
+    "D104",   # missing-docstring-in-public-package: Empty __init__.py test packages are fine
+    "PLR2004", # magic-value-comparison: Expected values in assertions are intentional literals
 ]
 
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
+
+[tool.pyright]
+typeCheckingMode = "standard"
+pythonVersion = "3.13"
+exclude = ["**/node_modules", "**/__pycache__", "**/.*", ".venv"]
+strictDictionaryInference = true
+strictListInference = true
+strictSetInference = true
+deprecateTypingAliases = true
+disableBytesTypePromotions = true
+enableReachabilityAnalysis = true
