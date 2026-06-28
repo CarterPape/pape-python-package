@@ -2,6 +2,16 @@
 
 A package for personalized Python add-ons, created and maintained solely by [Carter Pape](https://carterpape.com).
 
+## install
+
+```sh
+pip install pape  # or: uv add pape
+```
+
+## contributing
+
+Development setup, the check suite, and the release process are documented in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ## license
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
